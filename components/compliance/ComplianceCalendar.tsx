@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { StatusBadge } from '../common/StatusBadge';
+import StatusBadge from '../common/StatusBadge';
 
 export const ComplianceCalendar: React.FC<any> = ({ items }) => {
   return (

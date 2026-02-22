@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "GST Return Filing",
+    "dueDate": "2026-03-20",
+    "status": "pending",
+    "category": "Tax",
+    "description": "File GST return for Feb 2026"
+  },
+  {
+    "id": "2",
+    "name": "Income Tax Audit",
+    "dueDate": "2026-05-31",
+    "status": "pending",
+    "category": "Audit",
+    "description": "Annual income tax audit"
+  },
+  {
+    "id": "3",
+    "name": "ITR Filing",
+    "dueDate": "2026-07-31",
+    "status": "pending",
+    "category": "Tax",
+    "description": "File Individual Tax Return for FY 2025-26"
+  }
+]

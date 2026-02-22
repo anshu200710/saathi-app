@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "title": "Your GST return is due in 5 days",
+    "type": "compliance",
+    "date": "2026-02-22",
+    "read": false
+  },
+  {
+    "id": "2",
+    "title": "New funding opportunity available",
+    "type": "funding",
+    "date": "2026-02-20",
+    "read": false
+  },
+  {
+    "id": "3",
+    "title": "Your compliance score improved",
+    "type": "achievement",
+    "date": "2026-02-18",
+    "read": true
+  }
+]

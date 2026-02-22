@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "GST Registration",
+    "description": "Complete GST registration process",
+    "category": "ATA",
+    "price": 2000,
+    "active": true
+  },
+  {
+    "id": "2",
+    "name": "Trademark Registration",
+    "description": "Register your business trademark",
+    "category": "IP",
+    "price": 5000,
+    "active": true
+  },
+  {
+    "id": "3",
+    "name": "Company Registration",
+    "description": "Register a private limited company",
+    "category": "Incorporation",
+    "price": 8000,
+    "active": true
+  }
+]

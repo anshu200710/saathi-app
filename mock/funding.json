@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "name": "PMMY Scheme",
+    "description": "Pradhan Mantri Mudra Yojana",
+    "minAmount": 50000,
+    "maxAmount": 1000000,
+    "interestRate": 8.5,
+    "eligibilityCriteria": ["Individual", "Registered Business"],
+    "provider": "Government of India"
+  },
+  {
+    "id": "2",
+    "name": "SIDBI Loan",
+    "description": "Small Industries Development Bank of India",
+    "minAmount": 100000,
+    "maxAmount": 5000000,
+    "interestRate": 9.5,
+    "eligibilityCriteria": ["MSE", "Manufacturing"],
+    "provider": "SIDBI"
+  }
+]

@@ -1,12 +1,12 @@
-import React from 'react';
 import { Stack } from 'expo-router';
+import React from 'react';
 
 export default function AuthLayout() {
   return (
     <Stack
       screenOptions={{
         headerShown: false,
-        animationEnabled: true,
+        animation: 'slide_from_right', // ✅ correct
       }}
     >
       <Stack.Screen name="login" />

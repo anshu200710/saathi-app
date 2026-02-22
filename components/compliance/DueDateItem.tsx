@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { StatusBadge } from '../common/StatusBadge';
 
 export const DueDateItem: React.FC<any> = ({ item }) => {

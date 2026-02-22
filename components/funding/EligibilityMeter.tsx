@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { ProgressBar } from '../common/ProgressBar';
 
 export const EligibilityMeter: React.FC<any> = ({ score, message }) => {

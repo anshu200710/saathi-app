@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { Text, View } from 'react-native';
 
 export const RMCard: React.FC<any> = ({ name, phone }) => {
   return (

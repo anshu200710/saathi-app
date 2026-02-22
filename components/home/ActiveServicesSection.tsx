@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 
 export const ActiveServicesSection: React.FC<any> = ({ services }) => {
   return (

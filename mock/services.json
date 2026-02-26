@@ -1,26 +1,229 @@
 [
   {
-    "id": "1",
-    "name": "GST Registration",
-    "description": "Complete GST registration process",
-    "category": "ATA",
-    "price": 2000,
-    "active": true
+    "id": "svc_001",
+    "title": "GST Registration",
+    "shortDesc": "Get your GSTIN in 3–5 working days. Mandatory for businesses above ₹40L turnover.",
+    "longDesc": "GST Registration is mandatory for businesses with an annual turnover exceeding ₹40 lakhs (₹20 lakhs for special category states). Our experts handle the entire process — from document preparation to GSTIN activation — so you stay compliant from day one.",
+    "category": "taxation",
+    "emoji": "🧾",
+    "accentColor": "#0066CC",
+    "price": 999,
+    "pricingType": "fixed",
+    "currency": "INR",
+    "rating": 4.8,
+    "reviewCount": 1240,
+    "deliveryDays": 5,
+    "isFeatured": true,
+    "isPopular": true,
+    "isPremium": false,
+    "tags": ["GST", "Tax", "Mandatory", "MSME"],
+    "deliverables": [
+      { "label": "GSTIN Certificate", "included": true },
+      { "label": "GST Login Credentials", "included": true },
+      { "label": "First Return Filing Guidance", "included": true },
+      { "label": "Digital Signature (DSC)", "included": false }
+    ],
+    "processSteps": [
+      { "step": 1, "title": "Document Upload", "description": "Submit PAN, Aadhaar, bank statement and address proof via app.", "duration": "Day 1" },
+      { "step": 2, "title": "Application Filing", "description": "Our CA files your GST application on the GSTN portal.", "duration": "Day 1–2" },
+      { "step": 3, "title": "ARN Generation", "description": "Acknowledgement Reference Number generated — track status live.", "duration": "Day 2" },
+      { "step": 4, "title": "GSTIN Issued", "description": "Government issues your 15-digit GSTIN and certificate.", "duration": "Day 3–5" }
+    ],
+    "reviews": [
+      { "id": "r1", "userName": "Ramesh K.", "rating": 5, "comment": "Very smooth process. Got GSTIN in 4 days!", "date": "2024-12-10", "businessType": "Retail" },
+      { "id": "r2", "userName": "Priya S.", "rating": 5, "comment": "Expert answered all my queries on WhatsApp. Excellent service.", "date": "2024-11-22", "businessType": "Freelancer" }
+    ],
+    "documentsRequired": ["PAN Card", "Aadhaar Card", "Bank Statement (last 3 months)", "Business Address Proof", "Passport Photo"],
+    "governmentFee": 0,
+    "professionalFee": 999
   },
   {
-    "id": "2",
-    "name": "Trademark Registration",
-    "description": "Register your business trademark",
-    "category": "IP",
-    "price": 5000,
-    "active": true
+    "id": "svc_002",
+    "title": "Private Limited Company Registration",
+    "shortDesc": "Register your Pvt Ltd company end-to-end. Includes MCA filing, DSC, and DIN.",
+    "longDesc": "Incorporate your Private Limited Company with complete end-to-end support. We handle Director Identification Numbers (DIN), Digital Signature Certificates (DSC), name reservation, and MCA incorporation certificate — everything you need to start operating legally.",
+    "category": "registration",
+    "emoji": "🏢",
+    "accentColor": "#7C3AED",
+    "price": 6999,
+    "pricingType": "starting_from",
+    "currency": "INR",
+    "rating": 4.9,
+    "reviewCount": 872,
+    "deliveryDays": 15,
+    "isFeatured": true,
+    "isPopular": true,
+    "isPremium": false,
+    "tags": ["Company Registration", "MCA", "Startup", "Pvt Ltd"],
+    "deliverables": [
+      { "label": "Certificate of Incorporation", "included": true },
+      { "label": "PAN & TAN for Company", "included": true },
+      { "label": "2 Director DINs", "included": true },
+      { "label": "2 Digital Signature Certificates", "included": true },
+      { "label": "MOA & AOA Drafting", "included": true },
+      { "label": "Share Certificate", "included": true },
+      { "label": "GST Registration", "included": false }
+    ],
+    "processSteps": [
+      { "step": 1, "title": "Name Reservation", "description": "File RUN (Reserve Unique Name) on MCA portal. 2 name options suggested.", "duration": "Day 1–3" },
+      { "step": 2, "title": "DSC & DIN", "description": "Digital Signature Certificates and Director Identification Numbers obtained.", "duration": "Day 3–5" },
+      { "step": 3, "title": "SPICe+ Filing", "description": "MOA, AOA, and SPICe+ form filed with Ministry of Corporate Affairs.", "duration": "Day 5–10" },
+      { "step": 4, "title": "Incorporation Certificate", "description": "MCA issues Certificate of Incorporation with CIN number.", "duration": "Day 10–15" }
+    ],
+    "reviews": [
+      { "id": "r1", "userName": "Aditya M.", "rating": 5, "comment": "Fastest incorporation I've seen. Done in 12 days!", "date": "2024-12-01", "businessType": "Tech Startup" },
+      { "id": "r2", "userName": "Sneha R.", "rating": 4, "comment": "Good service. A bit of back-and-forth on documents but team was responsive.", "date": "2024-10-15", "businessType": "Consulting" }
+    ],
+    "documentsRequired": ["PAN of all Directors", "Aadhaar of all Directors", "Passport-size Photos", "Electricity Bill (Registered Office)", "NOC from Owner (if rented)", "Digital Signature (if available)"],
+    "governmentFee": 2000,
+    "professionalFee": 4999
   },
   {
-    "id": "3",
-    "name": "Company Registration",
-    "description": "Register a private limited company",
-    "category": "Incorporation",
-    "price": 8000,
-    "active": true
+    "id": "svc_003",
+    "title": "ITR Filing — Business",
+    "shortDesc": "Income Tax Return filing for proprietorships, partnerships, and companies. Audit support included.",
+    "longDesc": "Accurate, on-time Income Tax Return filing for all business structures. Our team of CAs reviews your financials, optimises deductions, and ensures your ITR is filed before the deadline — with audit support if required.",
+    "category": "taxation",
+    "emoji": "📊",
+    "accentColor": "#16A34A",
+    "price": 1499,
+    "pricingType": "starting_from",
+    "currency": "INR",
+    "rating": 4.7,
+    "reviewCount": 2100,
+    "deliveryDays": 7,
+    "isFeatured": false,
+    "isPopular": true,
+    "isPremium": false,
+    "tags": ["Income Tax", "ITR", "CA Assisted", "Annual Filing"],
+    "deliverables": [
+      { "label": "ITR Filed & Acknowledged", "included": true },
+      { "label": "Tax Computation Sheet", "included": true },
+      { "label": "ITR-V / Acknowledgement", "included": true },
+      { "label": "Refund Status Tracking", "included": true },
+      { "label": "Tax Audit Report (if applicable)", "included": false }
+    ],
+    "processSteps": [
+      { "step": 1, "title": "Document Review", "description": "Share P&L, balance sheet, Form 26AS and TDS certificates.", "duration": "Day 1–2" },
+      { "step": 2, "title": "Tax Computation", "description": "CA prepares computation, identifies deductions under Section 80.", "duration": "Day 2–4" },
+      { "step": 3, "title": "Your Approval", "description": "Review the draft computation and confirm via app.", "duration": "Day 4–5" },
+      { "step": 4, "title": "ITR Filed", "description": "Return filed and acknowledgement shared instantly.", "duration": "Day 5–7" }
+    ],
+    "reviews": [
+      { "id": "r1", "userName": "Kiran B.", "rating": 5, "comment": "Saved ₹28,000 in taxes through proper deductions. Worth every rupee.", "date": "2024-08-20", "businessType": "Proprietorship" }
+    ],
+    "documentsRequired": ["PAN Card", "Form 26AS", "Bank Statements", "Profit & Loss Account", "Balance Sheet", "Previous Year ITR (if any)"],
+    "governmentFee": 0,
+    "professionalFee": 1499
+  },
+  {
+    "id": "svc_004",
+    "title": "Trademark Registration",
+    "shortDesc": "Protect your brand name and logo. TM filing with IP India in 5 categories.",
+    "longDesc": "Your brand is your biggest asset. Secure it with Trademark Registration under the Trade Marks Act. We handle class identification, comprehensive search, application filing, and follow up with the IP India trademark registry until your TM is registered.",
+    "category": "trademark",
+    "emoji": "™️",
+    "accentColor": "#DC2626",
+    "price": 4499,
+    "pricingType": "starting_from",
+    "currency": "INR",
+    "rating": 4.6,
+    "reviewCount": 645,
+    "deliveryDays": 3,
+    "isFeatured": false,
+    "isPopular": false,
+    "isPremium": false,
+    "tags": ["IP Protection", "Trademark", "Brand", "Legal"],
+    "deliverables": [
+      { "label": "TM Application Filed", "included": true },
+      { "label": "Trademark Certificate (TM-A)", "included": true },
+      { "label": "™ Symbol Usage Rights", "included": true },
+      { "label": "Class Search Report", "included": true },
+      { "label": "Objection Response (if needed)", "included": false }
+    ],
+    "processSteps": [
+      { "step": 1, "title": "Brand Search", "description": "Comprehensive search for conflicting marks in your chosen class.", "duration": "Day 1" },
+      { "step": 2, "title": "Application Preparation", "description": "Trademark form TM-A prepared with class and logo details.", "duration": "Day 1–2" },
+      { "step": 3, "title": "IP India Filing", "description": "Application filed with IP India and application number issued.", "duration": "Day 2–3" },
+      { "step": 4, "title": "TM Certificate", "description": "Trademark certificate issued. Full registration takes 18–24 months.", "duration": "Ongoing" }
+    ],
+    "reviews": [
+      { "id": "r1", "userName": "Farhan A.", "rating": 5, "comment": "Quick filing. Got application number same day. Very professional.", "date": "2024-11-05", "businessType": "E-Commerce Brand" }
+    ],
+    "documentsRequired": ["Brand Logo (JPG/PNG)", "PAN of Applicant", "Signed Form TM-48 (Power of Attorney)", "MSME Certificate (for concession)"],
+    "governmentFee": 4500,
+    "professionalFee": 0
+  },
+  {
+    "id": "svc_005",
+    "title": "MSME / Udyam Registration",
+    "shortDesc": "Get your Udyam certificate in 1 day. Unlock government benefits, loans, and subsidies.",
+    "longDesc": "Udyam Registration (formerly MSME Registration) is free, online, and gives your business access to priority sector lending, government tenders, interest subsidies, and credit guarantees. Our team completes the registration in just one day.",
+    "category": "registration",
+    "emoji": "🏅",
+    "accentColor": "#F59E0B",
+    "price": 499,
+    "pricingType": "fixed",
+    "currency": "INR",
+    "rating": 4.9,
+    "reviewCount": 3400,
+    "deliveryDays": 1,
+    "isFeatured": true,
+    "isPopular": true,
+    "isPremium": false,
+    "tags": ["MSME", "Udyam", "Government", "Free Benefits"],
+    "deliverables": [
+      { "label": "Udyam Registration Certificate", "included": true },
+      { "label": "Udyam Number", "included": true },
+      { "label": "MSME Benefits Guide", "included": true }
+    ],
+    "processSteps": [
+      { "step": 1, "title": "Aadhaar Verification", "description": "OTP-based Aadhaar verification of proprietor/director.", "duration": "Day 1" },
+      { "step": 2, "title": "Business Details", "description": "NIC code, investment, and turnover details filled.", "duration": "Day 1" },
+      { "step": 3, "title": "Certificate Issued", "description": "Udyam certificate with unique Udyam number issued instantly.", "duration": "Day 1" }
+    ],
+    "reviews": [
+      { "id": "r1", "userName": "Sunita D.", "rating": 5, "comment": "Done in 2 hours! Got my MSME certificate the same day. Highly recommend.", "date": "2025-01-03", "businessType": "Manufacturing" }
+    ],
+    "documentsRequired": ["Aadhaar Card (linked mobile)", "PAN Card", "Bank Account Details", "Business Address Proof"],
+    "governmentFee": 0,
+    "professionalFee": 499
+  },
+  {
+    "id": "svc_006",
+    "title": "ROC Annual Compliance",
+    "shortDesc": "File MGT-7, AOC-4 and DIR-3 KYC on time. Avoid ₹100/day penalty.",
+    "longDesc": "Every Private Limited Company must file Annual Returns (MGT-7) and Financial Statements (AOC-4) with the MCA. Missing deadlines incurs ₹100 per day penalty per form. Our compliance team ensures timely filing with zero hassle.",
+    "category": "compliance",
+    "emoji": "📋",
+    "accentColor": "#0EA5E9",
+    "price": 3999,
+    "pricingType": "starting_from",
+    "currency": "INR",
+    "rating": 4.8,
+    "reviewCount": 910,
+    "deliveryDays": 7,
+    "isFeatured": false,
+    "isPopular": false,
+    "isPremium": false,
+    "tags": ["ROC", "MCA", "Annual Return", "Company Compliance"],
+    "deliverables": [
+      { "label": "MGT-7 Filing", "included": true },
+      { "label": "AOC-4 Filing", "included": true },
+      { "label": "DIR-3 KYC", "included": true },
+      { "label": "Financial Statement Preparation", "included": false }
+    ],
+    "processSteps": [
+      { "step": 1, "title": "Financial Review", "description": "Share audited financials and board resolution.", "duration": "Day 1–2" },
+      { "step": 2, "title": "Form Preparation", "description": "MGT-7 and AOC-4 forms prepared by CS.", "duration": "Day 2–5" },
+      { "step": 3, "title": "Director DSC", "description": "Forms digitally signed by directors.", "duration": "Day 5–6" },
+      { "step": 4, "title": "MCA Filing", "description": "Forms filed on MCA21 portal. SRN issued.", "duration": "Day 6–7" }
+    ],
+    "reviews": [
+      { "id": "r1", "userName": "Vivek P.", "rating": 5, "comment": "Filed before deadline, no penalties. Great team!", "date": "2024-10-30", "businessType": "Pvt Ltd" }
+    ],
+    "documentsRequired": ["Audited P&L and Balance Sheet", "Director DSC", "Board Resolution", "Previous Year Annual Return", "List of Shareholders"],
+    "governmentFee": 300,
+    "professionalFee": 3699
   }
 ]

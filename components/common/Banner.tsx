@@ -135,7 +135,7 @@ export default function Banner({
               {title}
             </Text>
           )}
-          <Text className="text-xs text-base leading-5">{message}</Text>
+          <Text className="text-sm leading-5">{message}</Text>
 
           {/* CTA Button */}
           {ctaLabel && onCta && (

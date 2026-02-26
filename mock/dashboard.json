@@ -1,0 +1,86 @@
+{
+  "greeting": "Good morning",
+  "businessName": "Sharma Traders",
+  "complianceScore": {
+    "score": 72,
+    "grade": "B",
+    "pendingTasks": 3,
+    "overdueTasks": 1,
+    "completedThisMonth": 5
+  },
+  "fundingEligibility": {
+    "score": 68,
+    "eligibleAmount": "₹15L – ₹50L",
+    "matchedSchemes": 7,
+    "topScheme": "CGTMSE Credit Guarantee"
+  },
+  "activeServices": [
+    {
+      "id": "as_001",
+      "serviceId": "svc_001",
+      "serviceTitle": "GST Registration",
+      "serviceEmoji": "🧾",
+      "accentColor": "#0066CC",
+      "status": "in_progress",
+      "progress": 65,
+      "currentStep": "Application Filed — ARN Generated",
+      "startedAt": "2025-01-10",
+      "expectedCompletion": "2025-01-15",
+      "assignedExpert": "CA Priya Sharma",
+      "expertAvatar": "PS"
+    },
+    {
+      "id": "as_002",
+      "serviceId": "svc_005",
+      "serviceTitle": "MSME Registration",
+      "serviceEmoji": "🏅",
+      "accentColor": "#F59E0B",
+      "status": "completed",
+      "progress": 100,
+      "currentStep": "Udyam Certificate Issued",
+      "startedAt": "2025-01-05",
+      "expectedCompletion": "2025-01-06",
+      "assignedExpert": "CA Rohit Verma",
+      "expertAvatar": "RV"
+    }
+  ],
+  "upcomingDeadlines": [
+    {
+      "id": "dl_001",
+      "title": "GSTR-3B Filing",
+      "dueDate": "2025-01-20",
+      "daysLeft": 6,
+      "type": "gst",
+      "penaltyAmount": "₹50/day"
+    },
+    {
+      "id": "dl_002",
+      "title": "TDS Payment (Q3)",
+      "dueDate": "2025-01-31",
+      "daysLeft": 17,
+      "type": "tds",
+      "penaltyAmount": "1.5%/month"
+    },
+    {
+      "id": "dl_003",
+      "title": "PF Monthly Payment",
+      "dueDate": "2025-01-15",
+      "daysLeft": 1,
+      "type": "pf",
+      "penaltyAmount": "₹5,000"
+    },
+    {
+      "id": "dl_004",
+      "title": "Advance Tax (Q3)",
+      "dueDate": "2025-03-15",
+      "daysLeft": 60,
+      "type": "income_tax"
+    }
+  ],
+  "quickStats": [
+    { "label": "Returns Filed", "value": "12", "change": "FY 2024-25", "isPositive": true, "icon": "checkmark-circle" },
+    { "label": "Tax Saved", "value": "₹42K", "change": "vs last year", "isPositive": true, "icon": "trending-up" },
+    { "label": "Pending Docs", "value": "2", "change": "Action needed", "isPositive": false, "icon": "document-text" },
+    { "label": "Credit Score", "value": "742", "change": "+18 pts", "isPositive": true, "icon": "star" }
+  ]
+}

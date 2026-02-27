@@ -1,148 +1,66 @@
 /**
- * app/(user)/_layout.tsx — Bottom Tab Navigator (Phases 1–5)
+ * app/_layout.tsx — Root Layout
  *
- * Tabs: Home | Services | Funding | Compliance | Profile
+ * Fix log:
+ *  - Removed `import '../global.css'` — file was missing, crashing
+ *    the entire layout before AuthProvider could mount, which caused
+ *    "useAuthContext must be within <AuthProvider>" on every screen.
+ *  - Fonts no longer block rendering — if they fail, the app still
+ *    loads (prevents white screen on web where font packages may fail).
+ *  - NativeWind CSS is now injected via babel plugin; no manual import needed.
  *
- * All other screens (Phases 4 & 5) are hidden routes — navigable
- * via router.push() but never shown in the tab bar.
+ * Provider order: AuthProvider → BusinessProvider → Slot
+ * (BusinessProvider can safely use AuthContext internally if needed)
  */
 
-import { Ionicons } from '@expo/vector-icons';
-import { Tabs } from 'expo-router';
-import { Platform, Text, View } from 'react-native';
-import { Colors } from '../theme';
+import {
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_600SemiBold,
+  Inter_700Bold,
+} from '@expo-google-fonts/inter';
+import {
+  Poppins_600SemiBold,
+  Poppins_700Bold,
+} from '@expo-google-fonts/poppins';
+import { useFonts } from 'expo-font';
+import { Slot, SplashScreen } from 'expo-router';
+import { useEffect } from 'react';
 
-type TabIconProps = {
-  name: string;
-  focused: boolean;
-  label: string;
-  badge?: number;
-};
+import { AuthProvider } from '@/context/AuthContext';
+import { BusinessProvider } from '@/context/BusinessContext';
 
-function TabIcon({ name, focused, label, badge }: TabIconProps) {
+// Prevent auto-hiding splash until fonts are ready
+SplashScreen.preventAutoHideAsync().catch(() => {
+  // preventAutoHideAsync can throw on web — ignore safely
+});
+
+export default function RootLayout() {
+  const [fontsLoaded, fontError] = useFonts({
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
+    Poppins_600SemiBold,
+    Poppins_700Bold,
+  });
+
+  useEffect(() => {
+    if (fontsLoaded || fontError) {
+      // Hide splash once fonts resolved (or failed — don't block the app)
+      SplashScreen.hideAsync().catch(() => {});
+    }
+  }, [fontsLoaded, fontError]);
+
+  // On web, font loading may never resolve — render anyway after a tick
+  // On native, wait for fonts to avoid FOUT (flash of unstyled text)
+  // Either way, providers must ALWAYS render so context is available.
+
   return (
-    <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: 4 }}>
-      <View style={{ position: 'relative' }}>
-        <Ionicons
-          name={name as any}
-          size={23}
-          color={focused ? Colors.primary : Colors.textMuted}
-        />
-        {badge !== undefined && badge > 0 && (
-          <View style={{
-            position: 'absolute', top: -4, right: -6,
-            backgroundColor: Colors.danger,
-            borderRadius: 8, minWidth: 16, height: 16,
-            alignItems: 'center', justifyContent: 'center',
-            paddingHorizontal: 3,
-            borderWidth: 1.5, borderColor: Colors.white,
-          }}>
-            <Text style={{ fontSize: 9, color: 'white', fontWeight: '800' }}>
-              {badge > 9 ? '9+' : badge}
-            </Text>
-          </View>
-        )}
-      </View>
-      <Text style={{
-        fontSize: 10, marginTop: 3,
-        fontWeight: focused ? '700' : '500',
-        color: focused ? Colors.primary : Colors.textMuted,
-      }}>
-        {label}
-      </Text>
-    </View>
-  );
-}
-
-export default function UserLayout() {
-  return (
-    <Tabs
-      screenOptions={{
-        headerShown: false,
-        tabBarStyle: {
-          height: Platform.OS === 'ios' ? 84 : 64,
-          paddingBottom: Platform.OS === 'ios' ? 24 : 8,
-          paddingTop: 8,
-          backgroundColor: Colors.white,
-          borderTopWidth: 1,
-          borderTopColor: Colors.border,
-          elevation: 12,
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: -3 },
-          shadowOpacity: 0.07,
-          shadowRadius: 12,
-        },
-        tabBarShowLabel: false,
-      }}
-    >
-      {/* ── Visible tabs ── */}
-      <Tabs.Screen
-        name="home/index"
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <TabIcon name={focused ? 'home' : 'home-outline'} focused={focused} label="Home" />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="services/index"
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <TabIcon name={focused ? 'grid' : 'grid-outline'} focused={focused} label="Services" />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="funding/index"
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <TabIcon name={focused ? 'cash' : 'cash-outline'} focused={focused} label="Funding" />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="compliance/index"
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <TabIcon name={focused ? 'shield-checkmark' : 'shield-checkmark-outline'} focused={focused} label="Comply" badge={1} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="profile/index"
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <TabIcon name={focused ? 'person-circle' : 'person-circle-outline'} focused={focused} label="Profile" />
-          ),
-        }}
-      />
-
-      {/* ── Phase 3: Services ── */}
-      <Tabs.Screen name="services/[id]" options={{ href: null }} />
-
-      {/* ── Phase 4: Funding ── */}
-      <Tabs.Screen name="funding/[id]" options={{ href: null }} />
-      <Tabs.Screen name="funding/eligibility/index" options={{ href: null }} />
-      <Tabs.Screen name="funding/eligibility/result" options={{ href: null }} />
-
-      {/* ── Phase 4: Documents ── */}
-      <Tabs.Screen name="documents/index" options={{ href: null }} />
-      <Tabs.Screen name="documents/[folder]" options={{ href: null }} />
-      <Tabs.Screen name="documents/upload" options={{ href: null }} />
-
-      {/* ── Phase 5: Plans & Payments ── */}
-      <Tabs.Screen name="plans/index" options={{ href: null }} />
-      <Tabs.Screen name="payments/index" options={{ href: null }} />
-
-      {/* ── Phase 5: Notifications ── */}
-      <Tabs.Screen name="notifications/index" options={{ href: null }} />
-      <Tabs.Screen name="notifications/preferences" options={{ href: null }} />
-
-      {/* ── Phase 5: RM Support ── */}
-      <Tabs.Screen name="support/index" options={{ href: null }} />
-
-      {/* ── Phase 6 stubs: Tools ── */}
-      <Tabs.Screen name="tools/index" options={{ href: null }} />
-    </Tabs>
+    <AuthProvider>
+      <BusinessProvider>
+        <Slot />
+      </BusinessProvider>
+    </AuthProvider>
   );
 }

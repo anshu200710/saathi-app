@@ -4,15 +4,15 @@
 
 import { adminAPI, notificationsAPI, paymentsAPI, plansAPI, supportAPI } from '@/services/adminApi';
 import type {
-    AdminDashboard,
-    AppNotification,
-    BillingCycle,
-    ChatMessage,
-    NotificationCategory,
-    PaymentSummary,
-    Plan,
-    RelationshipManager,
-    UserSubscription
+  AdminDashboard,
+  AppNotification,
+  BillingCycle,
+  ChatMessage,
+  NotificationCategory,
+  PaymentSummary,
+  Plan,
+  RelationshipManager,
+  UserSubscription
 } from '@/types/admin.types';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -128,7 +128,7 @@ export function useSupportChat() {
   const [isRmTyping, setIsRmTyping] = useState(false);
 
   useEffect(() => {
-    (async () => {
+    async function loadChat() {
       setIsLoading(true);
       try {
         const [r, m] = await Promise.all([supportAPI.getRM(), supportAPI.getMessages()]);
@@ -137,7 +137,8 @@ export function useSupportChat() {
       } finally {
         setIsLoading(false);
       }
-    })();
+    }
+    loadChat();
   }, []);
 
   const sendMessage = useCallback(async (text: string) => {

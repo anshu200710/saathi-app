@@ -18,7 +18,6 @@
 
 import { CustomButton } from '@/components/common';
 import { servicesAPI } from '@/services/servicesAPI';
-import { Colors, Shadow } from '@/theme';
 import type { Service } from '@/types/service.types';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { AntDesign, Ionicons } from '@expo/vector-icons';
@@ -32,6 +31,7 @@ import {
   Text,
   View
 } from 'react-native';
+import { Colors, Shadow } from '../../../theme';
 
 // ── Star Rating ───────────────────────────────────────────────
 function StarRating({ rating, size = 14 }: { rating: number; size?: number }) {
@@ -251,17 +251,18 @@ export default function ServiceDetailScreen() {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    (async () => {
+    async function loadService() {
       try {
         const data = await servicesAPI.getServiceById(id);
         setService(data);
         Animated.timing(fadeAnim, { toValue: 1, duration: 400, useNativeDriver: true }).start();
-      } catch {
+      } catch (e) {
         router.back();
       } finally {
         setIsLoading(false);
       }
-    })();
+    }
+    loadService();
   }, [id]);
 
   const handlePurchase = async () => {

@@ -26,14 +26,15 @@ export default function FundingDetailScreen() {
   const scrollY = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    (async () => {
+    async function loadScheme() {
       try {
         const data = await fundingAPI.getSchemeById(id);
         setScheme(data);
         Animated.timing(fadeAnim, { toValue: 1, duration: 400, useNativeDriver: true }).start();
-      } catch { router.back(); }
+      } catch (e) { router.back(); }
       finally { setIsLoading(false); }
-    })();
+    }
+    loadScheme();
   }, [id]);
 
   if (isLoading || !scheme) return (

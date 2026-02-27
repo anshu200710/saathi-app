@@ -17,14 +17,14 @@
  *   const { data } = await api.get<FundingScheme[]>('/funding/schemes');
  */
 
+import { storage } from '@/utils/storage';
 import axios, {
-    AxiosError,
-    AxiosInstance,
-    AxiosRequestConfig,
-    AxiosResponse,
-    InternalAxiosRequestConfig,
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
 } from 'axios';
-import * as SecureStore from 'expo-secure-store';
 
 // ── Environment ───────────────────────────────────────────────
 // In production replace with your actual API gateway URL.
@@ -73,7 +73,7 @@ const api: AxiosInstance = axios.create({
  */
 api.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {
-    const token = await SecureStore.getItemAsync(ACCESS_TOKEN_KEY);
+    const token = await storage.getItem(ACCESS_TOKEN_KEY);
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -133,7 +133,7 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const refreshToken = await SecureStore.getItemAsync(REFRESH_TOKEN_KEY);
+        const refreshToken = await storage.getItem(REFRESH_TOKEN_KEY);
         if (!refreshToken) throw new Error('No refresh token');
 
         const { data } = await axios.post<{ accessToken: string }>(
@@ -142,7 +142,7 @@ api.interceptors.response.use(
         );
 
         const newAccessToken = data.accessToken;
-        await SecureStore.setItemAsync(ACCESS_TOKEN_KEY, newAccessToken);
+        await storage.setItem(ACCESS_TOKEN_KEY, newAccessToken);
 
         flushQueue(null, newAccessToken);
         isRefreshing = false;
@@ -157,8 +157,8 @@ api.interceptors.response.use(
         // Refresh failed — force logout
         flushQueue(refreshError, null);
         isRefreshing = false;
-        await SecureStore.deleteItemAsync(ACCESS_TOKEN_KEY);
-        await SecureStore.deleteItemAsync(REFRESH_TOKEN_KEY);
+        await storage.deleteItem(ACCESS_TOKEN_KEY);
+        await storage.deleteItem(REFRESH_TOKEN_KEY);
         // Dispatch a logout event; AuthContext listens in useEffect
         // (avoids circular import between api.ts ↔ AuthContext.tsx)
         // The 401 APIError propagates; AuthContext catches it and calls logout()

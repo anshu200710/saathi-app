@@ -1,0 +1,82 @@
+{
+  "folders": [
+    {
+      "id": "fold_001",
+      "title": "Identity Documents",
+      "category": "identity",
+      "emoji": "🪪",
+      "accentColor": "#0066CC",
+      "documentCount": 3,
+      "lastUpdated": "2025-01-10",
+      "requiredCount": 3,
+      "uploadedCount": 3
+    },
+    {
+      "id": "fold_002",
+      "title": "Business Registration",
+      "category": "business_registration",
+      "emoji": "🏢",
+      "accentColor": "#7C3AED",
+      "documentCount": 4,
+      "lastUpdated": "2025-01-05",
+      "requiredCount": 5,
+      "uploadedCount": 4
+    },
+    {
+      "id": "fold_003",
+      "title": "Tax Documents",
+      "category": "tax",
+      "emoji": "🧾",
+      "accentColor": "#16A34A",
+      "documentCount": 5,
+      "lastUpdated": "2024-12-20",
+      "requiredCount": 6,
+      "uploadedCount": 5
+    },
+    {
+      "id": "fold_004",
+      "title": "Financial Statements",
+      "category": "financial",
+      "emoji": "📊",
+      "accentColor": "#F59E0B",
+      "documentCount": 2,
+      "lastUpdated": "2024-11-30",
+      "requiredCount": 4,
+      "uploadedCount": 2
+    },
+    {
+      "id": "fold_005",
+      "title": "Legal Agreements",
+      "category": "legal",
+      "emoji": "⚖️",
+      "accentColor": "#DC2626",
+      "documentCount": 1,
+      "lastUpdated": "2024-10-15",
+      "requiredCount": 2,
+      "uploadedCount": 1
+    },
+    {
+      "id": "fold_006",
+      "title": "Compliance Certificates",
+      "category": "compliance",
+      "emoji": "📋",
+      "accentColor": "#0EA5E9",
+      "documentCount": 3,
+      "lastUpdated": "2025-01-08",
+      "requiredCount": 3,
+      "uploadedCount": 3
+    }
+  ],
+  "documents": [
+    { "id": "doc_001", "folderId": "fold_001", "title": "PAN Card", "fileName": "pan_card.pdf", "fileType": "pdf", "fileSize": "245 KB", "status": "verified", "uploadedAt": "2025-01-10", "isRequired": true },
+    { "id": "doc_002", "folderId": "fold_001", "title": "Aadhaar Card", "fileName": "aadhaar.pdf", "fileType": "pdf", "fileSize": "310 KB", "status": "verified", "uploadedAt": "2025-01-10", "isRequired": true },
+    { "id": "doc_003", "folderId": "fold_001", "title": "Passport Photo", "fileName": "photo.jpg", "fileType": "image", "fileSize": "85 KB", "status": "verified", "uploadedAt": "2025-01-10", "isRequired": true },
+    { "id": "doc_004", "folderId": "fold_002", "title": "Udyam Certificate", "fileName": "udyam_cert.pdf", "fileType": "pdf", "fileSize": "420 KB", "status": "verified", "uploadedAt": "2025-01-05", "isRequired": true },
+    { "id": "doc_005", "folderId": "fold_002", "title": "GST Certificate", "fileName": "gst_cert.pdf", "fileType": "pdf", "fileSize": "380 KB", "status": "pending_review", "uploadedAt": "2025-01-06", "isRequired": true },
+    { "id": "doc_006", "folderId": "fold_002", "title": "Business Address Proof", "fileName": "address_proof.pdf", "fileType": "pdf", "fileSize": "520 KB", "status": "verified", "uploadedAt": "2025-01-05", "isRequired": true },
+    { "id": "doc_007", "folderId": "fold_002", "title": "Shop Act License", "fileName": "shop_act.pdf", "fileType": "pdf", "fileSize": "290 KB", "status": "verified", "uploadedAt": "2024-12-20", "isRequired": true, "expiresAt": "2025-12-31" },
+    { "id": "doc_008", "folderId": "fold_003", "title": "ITR FY 2023-24", "fileName": "itr_2324.pdf", "fileType": "pdf", "fileSize": "680 KB", "status": "verified", "uploadedAt": "2024-12-20", "isRequired": true },
+    { "id": "doc_009", "folderId": "fold_003", "title": "GSTR-3B (Dec 2024)", "fileName": "gstr3b_dec24.pdf", "fileType": "pdf", "fileSize": "145 KB", "status": "uploaded", "uploadedAt": "2025-01-08", "isRequired": false },
+    { "id": "doc_010", "folderId": "fold_003", "title": "Form 26AS (AY 24-25)", "fileName": "form26as.pdf", "fileType": "pdf", "fileSize": "890 KB", "status": "verified", "uploadedAt": "2024-11-15", "isRequired": true }
+  ]
+}

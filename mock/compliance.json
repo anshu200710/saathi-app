@@ -1,26 +1,129 @@
-[
-  {
-    "id": "1",
-    "name": "GST Return Filing",
-    "dueDate": "2026-03-20",
-    "status": "pending",
-    "category": "Tax",
-    "description": "File GST return for Feb 2026"
-  },
-  {
-    "id": "2",
-    "name": "Income Tax Audit",
-    "dueDate": "2026-05-31",
-    "status": "pending",
-    "category": "Audit",
-    "description": "Annual income tax audit"
-  },
-  {
-    "id": "3",
-    "name": "ITR Filing",
-    "dueDate": "2026-07-31",
-    "status": "pending",
-    "category": "Tax",
-    "description": "File Individual Tax Return for FY 2025-26"
-  }
-]
+{
+  "score": 72,
+  "grade": "B",
+  "overdueCount": 1,
+  "pendingCount": 3,
+  "completedCount": 8,
+  "upcomingCount": 4,
+  "byCategory": [
+    { "category": "gst", "label": "GST", "emoji": "🧾", "score": 80, "pendingCount": 1 },
+    { "category": "tds", "label": "TDS", "emoji": "💸", "score": 90, "pendingCount": 0 },
+    { "category": "income_tax", "label": "Income Tax", "emoji": "📊", "score": 60, "pendingCount": 1 },
+    { "category": "roc", "label": "ROC/MCA", "emoji": "📋", "score": 50, "pendingCount": 1 },
+    { "category": "pf", "label": "PF/ESI", "emoji": "👥", "score": 100, "pendingCount": 0 }
+  ],
+  "months": [
+    {
+      "month": "January 2025",
+      "completedCount": 1,
+      "totalCount": 4,
+      "tasks": [
+        {
+          "id": "task_001",
+          "title": "GSTR-3B Filing",
+          "description": "Monthly summary return of outward/inward supplies for December 2024.",
+          "category": "gst",
+          "frequency": "monthly",
+          "dueDate": "2025-01-20",
+          "status": "overdue",
+          "penalty": "₹50/day after due date",
+          "penaltyAmount": 50,
+          "form": "GSTR-3B",
+          "applicableTo": ["sole_proprietorship", "partnership", "private_limited", "llp"],
+          "priority": "critical",
+          "actionLabel": "File Now",
+          "actionRoute": "/(user)/services"
+        },
+        {
+          "id": "task_002",
+          "title": "TDS Payment – Q3",
+          "description": "Deposit TDS deducted in October–December 2024 quarter.",
+          "category": "tds",
+          "frequency": "quarterly",
+          "dueDate": "2025-01-31",
+          "status": "pending",
+          "penalty": "1.5% per month",
+          "form": "Challan 281",
+          "applicableTo": ["private_limited", "partnership", "llp"],
+          "priority": "high",
+          "actionLabel": "Pay TDS",
+          "actionRoute": "/(user)/services"
+        },
+        {
+          "id": "task_003",
+          "title": "PF Monthly Payment",
+          "description": "Employee Provident Fund contributions for January 2025.",
+          "category": "pf",
+          "frequency": "monthly",
+          "dueDate": "2025-01-15",
+          "status": "completed",
+          "form": "ECR",
+          "applicableTo": ["private_limited", "partnership"],
+          "priority": "high",
+          "completedAt": "2025-01-12"
+        },
+        {
+          "id": "task_004",
+          "title": "GSTR-1 Filing",
+          "description": "Statement of outward supplies (sales invoices) for December 2024.",
+          "category": "gst",
+          "frequency": "monthly",
+          "dueDate": "2025-01-11",
+          "status": "pending",
+          "penalty": "₹50/day",
+          "form": "GSTR-1",
+          "applicableTo": ["sole_proprietorship", "partnership", "private_limited"],
+          "priority": "high",
+          "actionLabel": "File Now",
+          "actionRoute": "/(user)/services"
+        }
+      ]
+    },
+    {
+      "month": "February 2025",
+      "completedCount": 0,
+      "totalCount": 3,
+      "tasks": [
+        {
+          "id": "task_005",
+          "title": "GSTR-3B Filing",
+          "description": "Monthly summary return for January 2025.",
+          "category": "gst",
+          "frequency": "monthly",
+          "dueDate": "2025-02-20",
+          "status": "upcoming",
+          "penalty": "₹50/day",
+          "form": "GSTR-3B",
+          "applicableTo": ["sole_proprietorship", "partnership", "private_limited"],
+          "priority": "critical"
+        },
+        {
+          "id": "task_006",
+          "title": "Advance Tax – Q3 Installment",
+          "description": "75% of estimated annual tax to be paid by 15th March.",
+          "category": "income_tax",
+          "frequency": "quarterly",
+          "dueDate": "2025-03-15",
+          "status": "upcoming",
+          "penalty": "1% per month under Section 234B",
+          "form": "Challan 280",
+          "applicableTo": ["private_limited", "partnership", "sole_proprietorship"],
+          "priority": "high"
+        },
+        {
+          "id": "task_007",
+          "title": "DIR-3 KYC for Directors",
+          "description": "Annual KYC filing for all company directors on MCA portal.",
+          "category": "roc",
+          "frequency": "annual",
+          "dueDate": "2025-09-30",
+          "status": "upcoming",
+          "penalty": "₹5,000 per director",
+          "form": "DIR-3 KYC",
+          "applicableTo": ["private_limited", "llp"],
+          "priority": "medium"
+        }
+      ]
+    }
+  ]
+}

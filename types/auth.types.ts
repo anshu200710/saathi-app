@@ -12,6 +12,8 @@ export interface User {
   isNewUser: boolean;
   isBusinessSetup: boolean;
   plan: 'free' | 'starter' | 'growth' | 'enterprise';
+  role?: 'user' | 'admin' | 'rm';      // unlocks /admin/* for 'admin'
+  businessName?: string;               // populated after business-profile step
   createdAt: string;
 }
 

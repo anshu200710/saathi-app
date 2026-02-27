@@ -1,0 +1,196 @@
+{
+  "plans": [
+    {
+      "id": "free",
+      "name": "Free",
+      "tagline": "Get started, no credit card",
+      "emoji": "🌱",
+      "accentColor": "#6B7280",
+      "monthlyPrice": 0,
+      "annualPrice": 0,
+      "annualSavings": 0,
+      "isMostPopular": false,
+      "badge": null,
+      "ctaLabel": "Current Plan",
+      "features": [
+        { "label": "Compliance calendar", "included": true },
+        { "label": "1 active service", "included": true },
+        { "label": "Document vault (500MB)", "included": true },
+        { "label": "GST & ITR calculator", "included": true },
+        { "label": "Funding scheme search", "included": true },
+        { "label": "Priority RM support", "included": false },
+        { "label": "Eligibility checker", "included": false },
+        { "label": "Auto-reminders (SMS)", "included": false },
+        { "label": "Multi-director support", "included": false }
+      ]
+    },
+    {
+      "id": "starter",
+      "name": "Starter",
+      "tagline": "For growing proprietorships & MSMEs",
+      "emoji": "🚀",
+      "accentColor": "#0066CC",
+      "monthlyPrice": 499,
+      "annualPrice": 399,
+      "annualSavings": 20,
+      "isMostPopular": false,
+      "badge": "Most Popular",
+      "ctaLabel": "Upgrade to Starter",
+      "features": [
+        { "label": "Everything in Free", "included": true, "highlight": true },
+        { "label": "5 active services", "included": true },
+        { "label": "Document vault (5GB)", "included": true },
+        { "label": "Auto-reminders (SMS + Email)", "included": true },
+        { "label": "Eligibility checker (3/month)", "included": true },
+        { "label": "Dedicated RM (email)", "included": true },
+        { "label": "Multi-director support", "included": false },
+        { "label": "Bulk filing discounts", "included": false },
+        { "label": "API access", "included": false }
+      ]
+    },
+    {
+      "id": "growth",
+      "name": "Growth",
+      "tagline": "For Pvt Ltd companies scaling fast",
+      "emoji": "📈",
+      "accentColor": "#FF9900",
+      "monthlyPrice": 1499,
+      "annualPrice": 1149,
+      "annualSavings": 23,
+      "isMostPopular": true,
+      "badge": "Best Value",
+      "ctaLabel": "Upgrade to Growth",
+      "features": [
+        { "label": "Everything in Starter", "included": true, "highlight": true },
+        { "label": "Unlimited active services", "included": true },
+        { "label": "Document vault (50GB)", "included": true },
+        { "label": "Unlimited eligibility checks", "included": true },
+        { "label": "Dedicated RM (call + chat)", "included": true, "highlight": true },
+        { "label": "Multi-director support (5)", "included": true },
+        { "label": "Bulk filing discounts (15%)", "included": true },
+        { "label": "Priority processing", "included": true },
+        { "label": "API access", "included": false }
+      ]
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "tagline": "Custom solutions for large businesses",
+      "emoji": "🏢",
+      "accentColor": "#7C3AED",
+      "monthlyPrice": 0,
+      "annualPrice": 0,
+      "annualSavings": 0,
+      "isMostPopular": false,
+      "badge": "Custom",
+      "ctaLabel": "Contact Sales",
+      "features": [
+        { "label": "Everything in Growth", "included": true, "highlight": true },
+        { "label": "Unlimited directors", "included": true },
+        { "label": "Unlimited document storage", "included": true },
+        { "label": "Dedicated CA + CS team", "included": true, "highlight": true },
+        { "label": "White-label portal", "included": true },
+        { "label": "Bulk filing discounts (30%)", "included": true },
+        { "label": "Custom API integration", "included": true },
+        { "label": "SLA-backed support (4hr)", "included": true },
+        { "label": "On-site visits (quarterly)", "included": true }
+      ]
+    }
+  ],
+  "subscription": {
+    "planId": "starter",
+    "planName": "Starter",
+    "billingCycle": "monthly",
+    "status": "active",
+    "nextBillingDate": "2025-02-10",
+    "nextBillingAmount": 499,
+    "startedAt": "2025-01-10",
+    "autoRenew": true
+  },
+  "paymentSummary": {
+    "totalSpent": 6496,
+    "totalTransactions": 8,
+    "pendingAmount": 0,
+    "transactions": [
+      { "id": "txn_001", "orderId": "ORD20250110001", "description": "Starter Plan – January 2025", "amount": 499, "currency": "INR", "status": "success", "method": "upi", "methodDetail": "Google Pay", "createdAt": "2025-01-10T09:30:00Z", "invoiceUrl": "#", "planId": "starter" },
+      { "id": "txn_002", "orderId": "ORD20250108002", "description": "GST Registration Service", "amount": 999, "currency": "INR", "status": "success", "method": "card", "methodDetail": "HDFC Visa ••4242", "createdAt": "2025-01-08T14:20:00Z", "invoiceUrl": "#", "serviceId": "svc_001" },
+      { "id": "txn_003", "orderId": "ORD20250105003", "description": "MSME Registration Service", "amount": 499, "currency": "INR", "status": "success", "method": "upi", "methodDetail": "PhonePe", "createdAt": "2025-01-05T11:00:00Z", "invoiceUrl": "#", "serviceId": "svc_005" },
+      { "id": "txn_004", "orderId": "ORD20241210004", "description": "Starter Plan – December 2024", "amount": 499, "currency": "INR", "status": "success", "method": "netbanking", "methodDetail": "SBI Net Banking", "createdAt": "2024-12-10T09:30:00Z", "invoiceUrl": "#", "planId": "starter" },
+      { "id": "txn_005", "orderId": "ORD20241205005", "description": "ITR Filing – FY 2023-24", "amount": 1499, "currency": "INR", "status": "success", "method": "upi", "methodDetail": "BHIM UPI", "createdAt": "2024-12-05T16:45:00Z", "invoiceUrl": "#", "serviceId": "svc_003" },
+      { "id": "txn_006", "orderId": "ORD20241120006", "description": "Trademark Filing", "amount": 2000, "currency": "INR", "status": "refunded", "method": "card", "methodDetail": "ICICI Mastercard ••8181", "createdAt": "2024-11-20T10:10:00Z", "invoiceUrl": "#", "serviceId": "svc_004" },
+      { "id": "txn_007", "orderId": "ORD20241210007", "description": "ROC Annual Compliance", "amount": 3999, "currency": "INR", "status": "pending", "method": "netbanking", "methodDetail": "Axis Bank", "createdAt": "2025-01-14T09:00:00Z", "invoiceUrl": null },
+      { "id": "txn_008", "orderId": "ORD20241115008", "description": "Growth Plan Upgrade Attempt", "amount": 1499, "currency": "INR", "status": "failed", "method": "card", "methodDetail": "HDFC Visa ••9999", "createdAt": "2024-11-15T17:30:00Z", "invoiceUrl": null }
+    ]
+  },
+  "notifications": [
+    { "id": "notif_001", "title": "⚠️ GSTR-3B Due in 6 Days", "body": "Your GSTR-3B for December 2024 is due on January 20. Penalty ₹50/day applies after that.", "category": "compliance", "priority": "critical", "isRead": false, "createdAt": "2025-01-14T08:00:00Z", "actionLabel": "File Now", "actionRoute": "/(user)/compliance", "emoji": "🧾" },
+    { "id": "notif_002", "title": "GST Registration Update", "body": "ARN has been generated for your GST application. Expected GSTIN in 2–3 working days.", "category": "service_update", "priority": "high", "isRead": false, "createdAt": "2025-01-13T14:30:00Z", "actionLabel": "Track Status", "actionRoute": "/(user)/services", "emoji": "🧾" },
+    { "id": "notif_003", "title": "₹499 Payment Successful", "body": "Your Starter Plan subscription for January 2025 has been charged successfully.", "category": "payment", "priority": "medium", "isRead": false, "createdAt": "2025-01-10T09:31:00Z", "actionLabel": "View Invoice", "actionRoute": "/(user)/payments", "emoji": "💳" },
+    { "id": "notif_004", "title": "New Funding Scheme Match!", "body": "You're now eligible for PM MUDRA Yojana – Tarun. Get up to ₹10L with no collateral.", "category": "funding", "priority": "high", "isRead": true, "createdAt": "2025-01-09T10:00:00Z", "actionLabel": "Check Eligibility", "actionRoute": "/(user)/funding", "emoji": "💰" },
+    { "id": "notif_005", "title": "Document Pending Review", "body": "Your GST Certificate has been submitted for verification. We'll notify you within 24 hours.", "category": "document", "priority": "medium", "isRead": true, "createdAt": "2025-01-06T16:00:00Z", "actionLabel": "View Vault", "actionRoute": "/(user)/documents", "emoji": "📁" },
+    { "id": "notif_006", "title": "PF Payment Completed ✓", "body": "PF ECR for January 2025 has been marked as complete. Great work staying on track!", "category": "compliance", "priority": "low", "isRead": true, "createdAt": "2025-01-12T11:00:00Z", "emoji": "👥" },
+    { "id": "notif_007", "title": "🎉 Upgrade & Save 23%", "body": "Switch to Growth Plan annual billing and save ₹4,200 per year. Limited time offer.", "category": "promo", "priority": "low", "isRead": true, "createdAt": "2025-01-08T12:00:00Z", "actionLabel": "See Plans", "actionRoute": "/(user)/plans", "emoji": "🎁" }
+  ],
+  "rm": {
+    "id": "rm_001",
+    "name": "Priya Sharma",
+    "designation": "Senior Relationship Manager",
+    "avatar": "PS",
+    "avatarColor": "#0066CC",
+    "phone": "+91 98765 43210",
+    "email": "priya.sharma@bizcare.in",
+    "expertise": ["GST Compliance", "Company Registration", "MSME Financing", "Income Tax"],
+    "rating": 4.9,
+    "clientsHandled": 248,
+    "languages": ["Hindi", "English", "Marathi"],
+    "availability": "available",
+    "availabilityText": "Available now"
+  },
+  "supportMessages": [
+    { "id": "msg_001", "sender": "system", "text": "Your support chat with Priya Sharma has started. She typically responds within 5 minutes.", "timestamp": "2025-01-10T09:00:00Z", "isRead": true },
+    { "id": "msg_002", "sender": "rm", "text": "Hello! I'm Priya, your dedicated RM. I've reviewed your profile — I see you have a GSTR-3B due soon. Would you like me to help you file it today?", "timestamp": "2025-01-10T09:01:00Z", "isRead": true },
+    { "id": "msg_003", "sender": "user", "text": "Yes please! I'm not sure about the format. Can you walk me through it?", "timestamp": "2025-01-10T09:04:00Z", "isRead": true },
+    { "id": "msg_004", "sender": "rm", "text": "Of course! I've pulled up your previous GSTR-1 data. Your outward supplies total ₹3,42,000 this month. I'll prepare the GSTR-3B draft and share it with you for approval. Should take about 30 minutes.", "timestamp": "2025-01-10T09:05:00Z", "isRead": true },
+    { "id": "msg_005", "sender": "user", "text": "That's great, thank you!", "timestamp": "2025-01-10T09:07:00Z", "isRead": true },
+    { "id": "msg_006", "sender": "rm", "text": "Draft is ready! Please review and confirm ✅", "timestamp": "2025-01-10T09:40:00Z", "isRead": false }
+  ],
+  "adminDashboard": {
+    "metrics": [
+      { "label": "Total Users", "value": "2,14,832", "change": "+12.4% this month", "isPositive": true, "icon": "people", "color": "#0066CC" },
+      { "label": "MRR", "value": "₹1.24Cr", "change": "+8.2% vs last month", "isPositive": true, "icon": "trending-up", "color": "#FF9900" },
+      { "label": "Active Services", "value": "18,492", "change": "+340 this week", "isPositive": true, "icon": "briefcase", "color": "#16A34A" },
+      { "label": "Compliance Rate", "value": "87.3%", "change": "+1.2% vs last quarter", "isPositive": true, "icon": "shield-checkmark", "color": "#7C3AED" },
+      { "label": "Avg CSAT", "value": "4.82 ★", "change": "Based on 3,840 reviews", "isPositive": true, "icon": "star", "color": "#F59E0B" },
+      { "label": "Churn Rate", "value": "2.1%", "change": "-0.3% vs last month", "isPositive": true, "icon": "exit", "color": "#DC2626" }
+    ],
+    "recentUsers": [
+      { "id": "usr_001", "name": "Arjun Sharma", "mobile": "9876543210", "plan": "starter", "status": "active", "joinedAt": "2025-01-10", "complianceScore": 72, "totalRevenue": 1498, "activeServices": 2, "lastActive": "2025-01-14", "state": "Maharashtra", "businessType": "sole_proprietorship" },
+      { "id": "usr_002", "name": "Preethi Rajan", "mobile": "9988776655", "plan": "growth", "status": "active", "joinedAt": "2025-01-08", "complianceScore": 91, "totalRevenue": 8497, "activeServices": 5, "lastActive": "2025-01-14", "state": "Tamil Nadu", "businessType": "private_limited" },
+      { "id": "usr_003", "name": "Mohd. Farhan", "mobile": "9123456789", "plan": "free", "status": "active", "joinedAt": "2025-01-12", "complianceScore": 45, "totalRevenue": 499, "activeServices": 1, "lastActive": "2025-01-13", "state": "Uttar Pradesh", "businessType": "partnership" },
+      { "id": "usr_004", "name": "Sunita Devi", "mobile": "8765432109", "plan": "starter", "status": "active", "joinedAt": "2024-12-20", "complianceScore": 83, "totalRevenue": 3494, "activeServices": 3, "lastActive": "2025-01-11", "state": "Rajasthan", "businessType": "sole_proprietorship" },
+      { "id": "usr_005", "name": "Vikram Patel", "mobile": "9654321098", "plan": "growth", "status": "inactive", "joinedAt": "2024-11-15", "complianceScore": 67, "totalRevenue": 12496, "activeServices": 0, "lastActive": "2024-12-30", "state": "Gujarat", "businessType": "llp" }
+    ],
+    "revenueByMonth": [
+      { "month": "Aug", "revenue": 8200000, "users": 182000 },
+      { "month": "Sep", "revenue": 9100000, "users": 191000 },
+      { "month": "Oct", "revenue": 10300000, "users": 198000 },
+      { "month": "Nov", "revenue": 10900000, "users": 204000 },
+      { "month": "Dec", "revenue": 11600000, "users": 210000 },
+      { "month": "Jan", "revenue": 12400000, "users": 214832 }
+    ],
+    "serviceDistribution": [
+      { "service": "GST Reg.", "count": 4820, "color": "#0066CC" },
+      { "service": "MSME", "count": 3940, "color": "#F59E0B" },
+      { "service": "ITR Filing", "count": 3290, "color": "#16A34A" },
+      { "service": "Pvt Ltd", "count": 2140, "color": "#7C3AED" },
+      { "service": "Trademark", "count": 1680, "color": "#DC2626" },
+      { "service": "ROC", "count": 1210, "color": "#0EA5E9" }
+    ],
+    "planDistribution": [
+      { "plan": "free", "count": 142000, "color": "#6B7280" },
+      { "plan": "starter", "count": 56000, "color": "#0066CC" },
+      { "plan": "growth", "count": 14800, "color": "#FF9900" },
+      { "plan": "enterprise", "count": 2032, "color": "#7C3AED" }
+    ]
+  }
+}

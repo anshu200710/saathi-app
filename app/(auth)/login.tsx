@@ -1,311 +1,271 @@
 /**
  * app/(auth)/login.tsx — Login Screen
  *
- * Design: Refined split layout. Top half = brand header with diagonal
- * cut geometric detail. Bottom half = white card with login form.
- * Feels trustworthy and premium — essential for a fintech product.
- *
- * Auth methods:
- *  1. Mobile OTP (primary) — navigates to verify-otp
- *  2. Google Sign-In (secondary)
- *
- * Validation: real-time inline, Bharat-aware (10-digit, 6-9 prefix).
+ * Clean email/password login design matching VyaaparSaathi branding.
+ * Features:
+ *  - Light background with centered form
+ *  - Store icon in blue rounded square
+ *  - Email and password fields with validation
+ *  - Forgot password link
+ *  - Sign up navigation
  */
 
-import CustomButton from '@/components/common/CustomButton';
 import { useAuth } from '@/hooks/useAuth';
-import { AntDesign, Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
-import React, { useRef, useState } from 'react';
+import { Feather } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Link, router } from 'expo-router';
+import React, { useState } from 'react';
 import {
-  Animated,
-  KeyboardAvoidingView,
-  Platform,
   Pressable,
   ScrollView,
   StatusBar,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from 'react-native';
-import { Colors, Shadow } from '../../theme';
-
-// ── Trust badges shown below CTA ──────────────────────────────
-const TRUST_ITEMS = [
-  { icon: 'shield-checkmark', label: '256-bit SSL' },
-  { icon: 'lock-closed', label: 'Data Private' },
-  { icon: 'star', label: '4.8★ Rating' },
-];
+import { Colors } from '../../theme';
 
 export default function LoginScreen() {
-  const { sendOtp, isLoading, error, clearError } = useAuth() as any;
+  const { isLoading } = useAuth() as any;
 
-  const [mobile, setMobile] = useState('');
-  const [mobileError, setMobileError] = useState<string | null>(null);
-  const [isFocused, setIsFocused] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [focusedField, setFocusedField] = useState<string | null>(null);
 
-  // Shake animation for errors
-  const shakeAnim = useRef(new Animated.Value(0)).current;
-
-  const shake = () => {
-    Animated.sequence([
-      Animated.timing(shakeAnim, { toValue: 8, duration: 60, useNativeDriver: true }),
-      Animated.timing(shakeAnim, { toValue: -8, duration: 60, useNativeDriver: true }),
-      Animated.timing(shakeAnim, { toValue: 6, duration: 60, useNativeDriver: true }),
-      Animated.timing(shakeAnim, { toValue: -6, duration: 60, useNativeDriver: true }),
-      Animated.timing(shakeAnim, { toValue: 0, duration: 60, useNativeDriver: true }),
-    ]).start();
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    if (!email.trim()) newErrors.email = 'Email is required';
+    else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = 'Enter a valid email';
+    if (!password) newErrors.password = 'Password is required';
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleMobileChange = (text: string) => {
-    const cleaned = text.replace(/\D/g, '').slice(0, 10);
-    setMobile(cleaned);
-    if (mobileError) setMobileError(null);
-    if (error) clearError();
-  };
-
-  const handleSendOtp = async () => {
-    // Validate mobile: must be 10 digits and start with 6-9
-    if (mobile.length !== 10) {
-      setMobileError('Please enter a valid 10-digit mobile number');
-      shake();
-      return;
+  const handleLogin = async () => {
+    if (!validate()) return;
+    
+    try {
+      // Save user session to AsyncStorage
+      const userData = {
+        email,
+        isLoggedIn: true,
+        loginTime: new Date().toISOString(),
+      };
+      await AsyncStorage.setItem('user_session', JSON.stringify(userData));
+      
+      // Navigate to user dashboard
+      router.replace('/(user)/home');
+    } catch (error) {
+      console.log('Login error:', error);
+      setErrors({ ...errors, login: 'Login failed. Please try again.' });
     }
-    if (!/^[6-9]/.test(mobile)) {
-      setMobileError('Mobile number must start with 6, 7, 8, or 9');
-      shake();
-      return;
-    }
-    await sendOtp(mobile);
   };
 
-  const handleGoogleLogin = () => {
-    // Google OAuth — integrate with @react-native-google-signin/google-signin
-    // Placeholder navigation for Phase 2
-    console.log('Google login — wire up Firebase in Phase 5');
-  };
+  const inputStyle = (field: string) => ({
+    flex: 1,
+    paddingVertical: 14,
+    paddingHorizontal: 8,
+    fontSize: 15,
+    color: Colors.textDark ?? '#1a1a2e',
+  });
 
-  const displayError = mobileError ?? error;
+  const containerStyle = (field: string) => ({
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    backgroundColor: '#F3F6FB',
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    borderWidth: 1.5,
+    borderColor:
+      errors[field]
+        ? '#EF4444'
+        : focusedField === field
+        ? '#3B82F6'
+        : 'transparent',
+    marginBottom: errors[field] ? 4 : 16,
+  });
+
+  const displayError = '';
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      className="flex-1"
-      style={{ backgroundColor: Colors.primary }}
-    >
-      <StatusBar barStyle="light-content" backgroundColor={Colors.primary} />
+    <View style={{ flex: 1, backgroundColor: '#EEF3FA' }}>
+      <StatusBar barStyle="dark-content" backgroundColor="#EEF3FA" />
 
       <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingHorizontal: 24,
+          paddingVertical: 40,
+        }}
         keyboardShouldPersistTaps="handled"
-        bounces={false}
+        showsVerticalScrollIndicator={false}
       >
-        {/* ── Header / Brand Area ────────────────────────────── */}
-        <View
-          style={{ backgroundColor: Colors.primary, paddingTop: 64, paddingBottom: 48 }}
-          className="px-6"
-        >
-          {/* Back to onboarding */}
-          <Pressable
-            onPress={() => router.back()}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            className="mb-8"
-          >
-            <AntDesign name="arrow-left" size={22} color="rgba(255,255,255,0.8)" />
-          </Pressable>
-
-          {/* Brand */}
-          <View className="flex-row items-center mb-2">
-            <View
-              style={{
-                width: 38,
-                height: 38,
-                borderRadius: 10,
-                backgroundColor: 'rgba(255,255,255,0.18)',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginRight: 10,
-              }}
-            >
-              <Text style={{ fontSize: 22, fontWeight: '800', color: Colors.white }}>B</Text>
-            </View>
-            <Text style={{ fontSize: 22, fontWeight: '800', color: Colors.white, letterSpacing: -0.5 }}>
-              BizCare
-            </Text>
-          </View>
-
-          <Text style={{ fontSize: 26, fontWeight: '800', color: Colors.white, marginTop: 20, letterSpacing: -0.5 }}>
-            Welcome back 👋
-          </Text>
-          <Text style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', marginTop: 6, lineHeight: 20 }}>
-            Enter your mobile number to continue growing your business
-          </Text>
-
-          {/* Stats strip */}
-          <View className="flex-row mt-6 gap-4">
-            {[
-              { value: '2L+', label: 'Businesses' },
-              { value: '₹200Cr+', label: 'Funding Linked' },
-              { value: '99%', label: 'On-time Filing' },
-            ].map((stat) => (
-              <View key={stat.label}>
-                <Text style={{ fontSize: 16, fontWeight: '800', color: Colors.white }}>{stat.value}</Text>
-                <Text style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)', marginTop: 1 }}>{stat.label}</Text>
-              </View>
-            ))}
-          </View>
-        </View>
-
-        {/* ── Form Card ──────────────────────────────────────── */}
+        {/* Store Icon */}
         <View
           style={{
-            flex: 1,
-            backgroundColor: Colors.background,
-            borderTopLeftRadius: 28,
-            borderTopRightRadius: 28,
-            paddingHorizontal: 24,
-            paddingTop: 32,
-            paddingBottom: 40,
-            ...Shadow.lg,
+            width: 72,
+            height: 72,
+            borderRadius: 18,
+            backgroundColor: '#DBEAFE',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: 20,
           }}
         >
-          <Text style={{ fontSize: 18, fontWeight: '700', color: Colors.textDark, marginBottom: 24 }}>
-            Login / Sign Up
+          <Feather name="shopping-bag" size={32} color="#3B82F6" />
+        </View>
+
+        {/* Title */}
+        <Text
+          style={{
+            fontSize: 24,
+            fontWeight: '800',
+            color: '#1E293B',
+            marginBottom: 6,
+            textAlign: 'center',
+          }}
+        >
+          Welcome Back
+        </Text>
+        <Text
+          style={{
+            fontSize: 14,
+            color: '#64748B',
+            textAlign: 'center',
+            marginBottom: 28,
+            lineHeight: 20,
+          }}
+        >
+          Manage your business with ease using VyaaparSaathi.
+        </Text>
+
+        {/* Email */}
+        <View style={{ width: '100%' }}>
+          <Text style={{ fontSize: 13, fontWeight: '600', color: '#475569', marginBottom: 8 }}>
+            Email Address
           </Text>
-
-          {/* Mobile Input */}
-          <View className="mb-5">
-            <Text style={{ fontSize: 13, fontWeight: '600', color: Colors.textBase, marginBottom: 8 }}>
-              Mobile Number
+          <View style={containerStyle('email')}>
+            <Feather name="mail" size={18} color="#94A3B8" />
+            <TextInput
+              placeholder="you@example.com"
+              placeholderTextColor="#94A3B8"
+              style={inputStyle('email')}
+              value={email}
+              onChangeText={(t) => {
+                setEmail(t);
+                if (errors.email) setErrors((e) => ({ ...e, email: '' }));
+              }}
+              onFocus={() => setFocusedField('email')}
+              onBlur={() => setFocusedField(null)}
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
+          </View>
+          {errors.email ? (
+            <Text style={{ fontSize: 12, color: '#EF4444', marginBottom: 12, marginLeft: 2 }}>
+              {errors.email}
             </Text>
+          ) : null}
+        </View>
 
-            <Animated.View style={{ transform: [{ translateX: shakeAnim }] }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  borderWidth: isFocused ? 2 : 1.5,
-                  borderColor: displayError
-                    ? Colors.danger
-                    : isFocused
-                    ? Colors.primary
-                    : Colors.border,
-                  borderRadius: 12,
-                  backgroundColor: Colors.white,
-                  paddingHorizontal: 14,
-                  height: 54,
-                  ...Shadow.sm,
-                }}
-              >
-                {/* Country prefix */}
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    paddingRight: 12,
-                    borderRightWidth: 1,
-                    borderRightColor: Colors.border,
-                    marginRight: 12,
-                  }}
-                >
-                  <Text style={{ fontSize: 18, marginRight: 4 }}>🇮🇳</Text>
-                  <Text style={{ fontSize: 14, fontWeight: '600', color: Colors.textDark }}>+91</Text>
-                </View>
-
-                <TextInput
-                  value={mobile}
-                  onChangeText={handleMobileChange}
-                  placeholder="98765 43210"
-                  placeholderTextColor={Colors.textDisabled}
-                  keyboardType="phone-pad"
-                  maxLength={10}
-                  onFocus={() => setIsFocused(true)}
-                  onBlur={() => setIsFocused(false)}
-                  style={{
-                    flex: 1,
-                    fontSize: 17,
-                    fontWeight: '600',
-                    color: Colors.textDark,
-                    letterSpacing: 1,
-                  }}
-                  returnKeyType="done"
-                  onSubmitEditing={handleSendOtp}
-                  accessibilityLabel="Mobile number"
-                />
-
-                {mobile.length === 10 && !mobileError && (
-                  <Ionicons name="checkmark-circle" size={20} color={Colors.success} />
-                )}
-              </View>
-            </Animated.View>
-
-            {/* Error text */}
-            {displayError && (
-              <Text style={{ fontSize: 12, color: Colors.danger, marginTop: 6, marginLeft: 2 }}>
-                {displayError}
-              </Text>
-            )}
+        {/* Password */}
+        <View style={{ width: '100%' }}>
+          <Text style={{ fontSize: 13, fontWeight: '600', color: '#475569', marginBottom: 8 }}>
+            Password
+          </Text>
+          <View style={containerStyle('password')}>
+            <Feather name="lock" size={18} color="#94A3B8" />
+            <TextInput
+              placeholder="••••••••"
+              placeholderTextColor="#94A3B8"
+              style={inputStyle('password')}
+              value={password}
+              onChangeText={(t) => {
+                setPassword(t);
+                if (errors.password) setErrors((e) => ({ ...e, password: '' }));
+              }}
+              onFocus={() => setFocusedField('password')}
+              onBlur={() => setFocusedField(null)}
+              secureTextEntry={!showPassword}
+            />
+            <Pressable onPress={() => setShowPassword((v) => !v)} hitSlop={8}>
+              <Feather
+                name={showPassword ? 'eye' : 'eye-off'}
+                size={18}
+                color="#94A3B8"
+              />
+            </Pressable>
           </View>
+          {errors.password ? (
+            <Text style={{ fontSize: 12, color: '#EF4444', marginBottom: 12, marginLeft: 2 }}>
+              {errors.password}
+            </Text>
+          ) : null}
+        </View>
 
-          {/* OTP CTA */}
-          <CustomButton
-            label="Get OTP"
-            onPress={handleSendOtp}
-            loading={isLoading}
-            fullWidth
-            size="lg"
-            rightIcon={<AntDesign name="arrow-right" size={18} color="white" />}
-          />
+        {/* Forgot Password Link */}
+        <Pressable
+          onPress={() => router.push('/(auth)/login')}
+          style={{ alignSelf: 'flex-end', marginBottom: 24 }}
+        >
+          <Text style={{ fontSize: 14, color: '#3B82F6', fontWeight: '600' }}>
+            Forgot Password?
+          </Text>
+        </Pressable>
 
-          {/* Divider */}
-          <View className="flex-row items-center my-6">
-            <View style={{ flex: 1, height: 1, backgroundColor: Colors.border }} />
-            <Text style={{ fontSize: 13, color: Colors.textMuted, marginHorizontal: 12 }}>or</Text>
-            <View style={{ flex: 1, height: 1, backgroundColor: Colors.border }} />
-          </View>
+        {/* Login Button */}
+        <TouchableOpacity
+          onPress={handleLogin}
+          style={{
+            width: '100%',
+            backgroundColor: '#3B82F6',
+            paddingVertical: 16,
+            borderRadius: 14,
+            alignItems: 'center',
+            marginBottom: 20,
+            shadowColor: '#3B82F6',
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.3,
+            shadowRadius: 8,
+            elevation: 4,
+          }}
+          activeOpacity={0.85}
+        >
+          <Text style={{ color: 'white', fontSize: 16, fontWeight: '700', letterSpacing: 0.3 }}>
+            Login
+          </Text>
+        </TouchableOpacity>
 
-          {/* Google Login */}
-          <Pressable
-            onPress={handleGoogleLogin}
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: 52,
-              borderRadius: 12,
-              borderWidth: 1.5,
-              borderColor: Colors.border,
-              backgroundColor: Colors.white,
-              ...Shadow.sm,
-            }}
-          >
-            <AntDesign name="google" size={20} color="#EA4335" />
-            <Text style={{ fontSize: 15, fontWeight: '600', color: Colors.textDark, marginLeft: 10 }}>
-              Continue with Google
+        {/* Sign Up Link */}
+        <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 24 }}>
+          <Text style={{ fontSize: 14, color: '#64748B' }}>Don't have an account? </Text>
+          <Link href="/(auth)/register" asChild>
+            <Pressable>
+              <Text style={{ fontSize: 14, color: '#3B82F6', fontWeight: '700' }}>Sign up</Text>
+            </Pressable>
+          </Link>
+        </View>
+
+        {/* Navigation Links */}
+        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 12 }}>
+          <Pressable onPress={() => router.back()}>
+            <Text style={{ fontSize: 13, color: '#3B82F6', fontWeight: '600' }}>
+              ← Back to Navigation
             </Text>
           </Pressable>
-
-          {/* Trust badges */}
-          <View className="flex-row justify-center mt-7 gap-5">
-            {TRUST_ITEMS.map((item) => (
-              <View key={item.label} className="items-center">
-                <Ionicons name={item.icon as any} size={16} color={Colors.textMuted} />
-                <Text style={{ fontSize: 10, color: Colors.textMuted, marginTop: 3, fontWeight: '500' }}>
-                  {item.label}
-                </Text>
-              </View>
-            ))}
-          </View>
-
-          {/* Terms */}
-          <Text style={{ fontSize: 11, color: Colors.textMuted, textAlign: 'center', marginTop: 20, lineHeight: 16 }}>
-            By continuing, you agree to our{' '}
-            <Text style={{ color: Colors.primary, fontWeight: '600' }}>Terms of Service</Text>
-            {' '}and{' '}
-            <Text style={{ color: Colors.primary, fontWeight: '600' }}>Privacy Policy</Text>
-          </Text>
+          <Text style={{ color: '#CBD5E1' }}>|</Text>
+          <Pressable onPress={() => router.push('/(auth)/register')}>
+            <Text style={{ fontSize: 13, color: '#3B82F6', fontWeight: '600' }}>
+              Dashboard →
+            </Text>
+          </Pressable>
         </View>
       </ScrollView>
-    </KeyboardAvoidingView>
+    </View>
   );
 }

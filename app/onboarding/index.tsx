@@ -19,14 +19,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 import React, { useCallback, useRef, useState } from 'react';
 import {
-    Animated,
-    Dimensions,
-    FlatList,
-    Pressable,
-    StatusBar,
-    Text,
-    View,
-    ViewToken,
+  Animated,
+  Dimensions,
+  FlatList,
+  Pressable,
+  StatusBar,
+  Text,
+  View,
+  ViewToken,
 } from 'react-native';
 import { Colors } from '../../theme';
 
@@ -295,15 +295,20 @@ export default function OnboardingScreen() {
           }
         />
 
-        {/* Login link for returning users */}
-        <Pressable onPress={goToLogin} className="mt-5 items-center">
-          <Text style={{ fontSize: 14, color: Colors.textMuted }}>
-            Already have an account?{' '}
-            <Text style={{ color: Colors.primary, fontWeight: '700' }}>
-              Log In
+        {/* Navigation links */}
+        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 16 }}>
+          <Pressable onPress={goToLogin} style={{ marginRight: 8 }}>
+            <Text style={{ fontSize: 13, color: Colors.primary, fontWeight: '600' }}>
+              ← Back to Navigation
             </Text>
-          </Text>
-        </Pressable>
+          </Pressable>
+          <Text style={{ fontSize: 13, color: Colors.textDisabled }}>|</Text>
+          <Pressable onPress={handleNext} style={{ marginLeft: 8 }}>
+            <Text style={{ fontSize: 13, color: Colors.primary, fontWeight: '600' }}>
+              Next →
+            </Text>
+          </Pressable>
+        </View>
       </View>
     </View>
   );

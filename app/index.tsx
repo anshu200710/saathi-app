@@ -1,19 +1,20 @@
 /**
  * app/index.tsx — Entry / Splash Gate
  *
- * Shown briefly on launch while AuthContext restores session from SecureStore.
- * Animates the brand mark in with a scale+fade sequence.
+ * Beautiful splash screen shown on launch (2-3 seconds).
+ * After animations complete, it:
+ *   • Checks if user is first-time → navigate to onboarding
+ *   • Checks user session → navigate to login or dashboard
  *
- * Routing logic (handled in AuthContext after restore):
- *   • Has valid session + business setup → /(user)/home
- *   • Has valid session, no business     → /(auth)/business-profile
- *   • No session + first launch          → /onboarding
- *   • No session + returning user        → /(auth)/login
- *
- * This screen itself never navigates — AuthContext does it on restore.
- * It simply shows the brand during the async window.
+ * Routing logic:
+ *   • First time user         → /onboarding
+ *   • No active session       → /(auth)/login
+ *   • Valid session + setup   → /(user)/home
+ *   • Valid session, no setup → /(auth)/business-profile
  */
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { router } from 'expo-router';
 import React, { useEffect, useRef } from 'react';
 import {
   Animated,
@@ -35,6 +36,7 @@ export default function SplashScreen() {
   const dotScale1 = useRef(new Animated.Value(0)).current;
   const dotScale2 = useRef(new Animated.Value(0)).current;
   const dotScale3 = useRef(new Animated.Value(0)).current;
+  const containerOpacity = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
     // Stage 1: Logo reveal
@@ -81,12 +83,54 @@ export default function SplashScreen() {
       dotDelay(dotScale2, 150).start();
       dotDelay(dotScale3, 300).start();
     });
+
+    // Navigate after 2.5 seconds
+    const navigationTimer = setTimeout(() => {
+      handleNavigation();
+    }, 2500);
+
+    return () => clearTimeout(navigationTimer);
   }, []);
 
+  const handleNavigation = async () => {
+    try {
+      // Check if onboarding was already completed
+      const onboardingDone = await AsyncStorage.getItem('onboarding_done');
+      const userSession = await AsyncStorage.getItem('user_session');
+
+      // Fade out splash screen
+      Animated.timing(containerOpacity, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }).start(() => {
+        if (!onboardingDone) {
+          // First-time user → show onboarding
+          router.replace('/onboarding');
+        } else if (userSession) {
+          // Returning user with session → go to dashboard
+          router.replace('/(user)/home');
+        } else {
+          // Returning user, no session → go to login
+          router.replace('/(auth)/login');
+        }
+      });
+    } catch (error) {
+      console.log('Navigation error:', error);
+      // Default to login on error
+      router.replace('/(auth)/login');
+    }
+  };
+
   return (
-    <View
-      className="flex-1 items-center justify-center"
-      style={{ backgroundColor: Colors.primary }}
+    <Animated.View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Colors.primary,
+        opacity: containerOpacity,
+      }}
     >
       <StatusBar barStyle="light-content" backgroundColor={Colors.primary} />
 
@@ -124,7 +168,7 @@ export default function SplashScreen() {
           alignItems: 'center',
         }}
       >
-        {/* Logo mark — geometric B */}
+        {/* Logo mark — store icon */}
         <View
           style={{
             width: 80,
@@ -147,7 +191,7 @@ export default function SplashScreen() {
               lineHeight: 48,
             }}
           >
-            B
+            V
           </Text>
         </View>
 
@@ -160,7 +204,8 @@ export default function SplashScreen() {
             letterSpacing: -0.5,
           }}
         >
-          BizCare
+          Vyaapar
+          <Text style={{ color: 'rgba(255,255,255,0.9)' }}>Saathi</Text>
         </Text>
         <Text
           style={{
@@ -194,7 +239,7 @@ export default function SplashScreen() {
             letterSpacing: 0.3,
           }}
         >
-          Grow smarter. Stay compliant.
+          Your Business Companion
         </Text>
       </Animated.View>
 
@@ -220,6 +265,6 @@ export default function SplashScreen() {
           />
         ))}
       </View>
-    </View>
+    </Animated.View>
   );
 }
